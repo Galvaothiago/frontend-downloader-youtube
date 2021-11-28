@@ -32,7 +32,7 @@ function App() {
       setInfoVideo(infoFormated)
       
     } catch (error) {
-      alert('something went wrong', error.message)
+      alert(error.message)
     }
   }
 
