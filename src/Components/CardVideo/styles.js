@@ -33,17 +33,16 @@ export const CardContainer = styled.div`
         display: flex;
         flex-direction: column;
 
-        max-width: 30rem;
+        max-width: 27rem;
         width: 100%;
 
-        height: 26rem;
+        height: 32rem;
 
         position: relative;
         animation: ${initialTransform} .5s linear;
 
         img {
-            width: 200px;
-            height: 18rem;
+            width: 350px;
         }
 
         h2 {

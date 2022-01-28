@@ -23,6 +23,25 @@ export const ContainerLoading = styled.div`
     position: absolute;
     pointer-events: none;
 
+    @media(max-width: 800px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 27rem;
+        width: 100%;
+        height: 32rem;
+
+        p {
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        svg {
+            font-size: 1.2rem; 
+        }
+
+    }
+
     
 
     p {
