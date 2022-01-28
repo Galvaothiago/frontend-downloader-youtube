@@ -1,10 +1,13 @@
-import { CardContainer } from './styles.js'
+import { CardContainer, Footer, Info, Title } from './styles.js'
 import { BiTime } from 'react-icons/bi'
 import { AiOutlineEye } from 'react-icons/ai'
 
 export function CardVideo({ info, onDown }) {
     const { img, url, title, views, lengthSeconds } = info[0]
 
+    const download = async () => {
+        await onDown(url)
+    }
     const trucate = (str, n) => {
         if(str?.length < n) {
             return str
@@ -31,30 +34,30 @@ export function CardVideo({ info, onDown }) {
 
     const timeVideo = templateHoursMinutesAndSecond(lengthSeconds)
 
-    const textTrucate = trucate(title, 85)
+    const MAX_CHARACTERS = 85
+    const textTrucate = trucate(title, MAX_CHARACTERS)
 
     return (
 
         <CardContainer>
             <img src={img} alt={title} />
             <div>
-                <div>
-                    <h2>{textTrucate}</h2>
-                    <div>
-                        <div>
-                            <AiOutlineEye />
-                            <p>{`${views} views`}</p>
-                        </div>
-                        <div>
-                            <BiTime />
-                            <span>{timeVideo}</span>
-                        </div>
-                    </div>
-                </div>
+                <Title>{textTrucate}</Title>
 
-                <footer>
-                    <button onClick={async () => await onDown(url)}>Download</button>
-                </footer>
+                <Info>
+                    <div>
+                        <AiOutlineEye />
+                        <p>{`${views} views`}</p>
+                    </div>
+                    <div>
+                        <BiTime />
+                        <span>{timeVideo}</span>
+                    </div>
+                </Info>
+            
+               <Footer>
+                    <button onClick={download}>Download</button>
+               </Footer>
             </div>
         </CardContainer>
     )
