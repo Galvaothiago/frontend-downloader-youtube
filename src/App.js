@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import { CardVideo } from './Components/CardVideo';
 import { BackgroundEmpty } from './Components/BackgroundEmpty';
 import { Loading } from './Components/Loading';
+import { Error } from './Components/Error';
 
 function App() {
   const [ infoVideo, setInfoVideo ] = useState(null)
@@ -13,14 +14,17 @@ function App() {
 
   const [download, setDownload] = useState(null)
   const [ isLoading, setIsLoading ] = useState(false)
+  const  [ error, setError ] = useState("")
 
   const getInfoAboutVideo = async (url) => {
     try {
       setIsSearching(true)
+
       const info = await api.post('/youtube', {
         url
       })
 
+      console.log(info)
       const infoFormated = [info.data].map(info => ({
         title: info.title,
         url: info.url,
@@ -31,11 +35,12 @@ function App() {
 
       }))
 
+      setError("")
       setInfoVideo(infoFormated)
       setIsSearching(false)
       
     } catch (error) {
-      alert(error.message)
+      setError(error.message)
       setIsSearching(false)
     }
   }
@@ -50,8 +55,6 @@ function App() {
       setDownload(res.request.responseURL)
       setIsLoading(false)
 
-
-      console.log(res.request.responseURL)
       setTimeout(() => {
         setDownload(null)
       }, 4000)
@@ -65,7 +68,9 @@ function App() {
     <Container>
       <Header searching={isSearching} onGetInfo={getInfoAboutVideo} />
       <Dashboard>
-          { infoVideo ? <CardVideo info={infoVideo} onDown={downloadVideo}/> : <BackgroundEmpty /> }
+          { !!error ? 
+                <Error message={error} /> : 
+                (infoVideo ? <CardVideo info={infoVideo} onDown={downloadVideo}/> : <BackgroundEmpty />) }
           { isLoading && <Loading content="We are preparing your download..."/>}
           { download && <iframe title={infoVideo.title} style={ { display: 'none' }} src={download}></iframe> }
       </Dashboard>

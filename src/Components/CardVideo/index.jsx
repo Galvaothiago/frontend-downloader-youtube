@@ -6,11 +6,11 @@ export function CardVideo({ info, onDown }) {
     const { img, url, title, views, lengthSeconds } = info[0]
 
     const trucate = (str, n) => {
-        if(str.length < n) {
+        if(str?.length < n) {
             return str
         }
         
-        return str.substring(0, ( Number(n) - 1)) + '...'
+        return str?.substring(0, ( Number(n) - 1)) + '...'
     }
 
     const templateHoursMinutesAndSecond = (lengthSeconds) => {
