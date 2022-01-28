@@ -36,7 +36,7 @@ export const CardContainer = styled.div`
         max-width: 27rem;
         width: 100%;
 
-        height: 32rem;
+        height: 35rem;
 
         position: relative;
         animation: ${initialTransform} .5s linear;
