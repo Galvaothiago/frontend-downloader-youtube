@@ -1,9 +1,9 @@
 import { Input } from '../Input/index.jsx'
 import { HeaderContainer } from './styles.js' 
-export function Header({ onGetInfo }) {
+export function Header({ onGetInfo, searching }) {
     return (
         <HeaderContainer>
-                <Input onGetInfo={onGetInfo} />
+                <Input searching={searching} onGetInfo={onGetInfo} />
         </HeaderContainer>
     )
 }

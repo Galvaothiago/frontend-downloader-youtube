@@ -1,4 +1,6 @@
 import { CardContainer } from './styles.js'
+import { BiTime } from 'react-icons/bi'
+import { AiOutlineEye } from 'react-icons/ai'
 
 export function CardVideo({ info, onDown }) {
     const { img, url, title, views, lengthSeconds } = info[0]
@@ -39,8 +41,14 @@ export function CardVideo({ info, onDown }) {
                 <div>
                     <h2>{textTrucate}</h2>
                     <div>
-                        <p>{`${views} views`}</p>
-                        <span>{timeVideo}</span>
+                        <div>
+                            <AiOutlineEye />
+                            <p>{`${views} views`}</p>
+                        </div>
+                        <div>
+                            <BiTime />
+                            <span>{timeVideo}</span>
+                        </div>
                     </div>
                 </div>
 

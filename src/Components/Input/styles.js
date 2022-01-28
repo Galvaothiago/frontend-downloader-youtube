@@ -9,6 +9,8 @@ export const InputContainer = styled.form`
     align-items: center;
     justify-content: space-evenly;
 
+    position: relative;
+
 
     input {
         width: 83%;
@@ -37,8 +39,12 @@ export const InputContainer = styled.form`
 
         color: #fff;
         font-weight: 700;
-        font-size: .79rem;
+        font-size: 1rem;
         cursor: pointer;
+
+        &:active {
+            transform: scale(1.05);
+        }
 
     }
 `

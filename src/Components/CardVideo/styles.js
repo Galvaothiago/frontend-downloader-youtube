@@ -68,8 +68,8 @@ export const CardContainer = styled.div`
 
         > div {
             h2 {
-                    font-size: 1.3rem;
-                    font-weight: 300;
+                font-size: 1.3rem;
+                font-weight: 300;
                 }
 
             > div {
@@ -79,29 +79,40 @@ export const CardContainer = styled.div`
                 margin-top: 2rem;
                 padding: .3rem;
 
-                background: #eae9e9;
+                background: #f2f4f3;
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
+                justify-content: space-around;
 
-                p {
-                    font-weight: 300;
-                    font-size: 1rem;
-                    background: #d9d7d7;
-                    border-radius: 10px;
+                div {
+                    display: flex;
+                    align-items: center;
+                    gap: .3rem;
 
-                    padding: .9rem;
+                    svg {
+                        font-size: 1.1rem;
+                        color: black;
+                    }
+    
+                    p {
+                        font-weight: 300;
+                        font-size: 1rem;
+                    
+                        border-radius: 10px;
+    
+                        /* padding: .9rem; */
+                    }
+
+                    span {
+                        font-size: 1.1rem;
+                        font-weight: 700;
+                        border-radius: 10px;
+    
+                        /* padding: .9rem; */
+                    }
                 }
 
-                span {
-                    font-size: 1.1rem;
-                    font-weight: 700;
-                    border-radius: 10px;
 
-                    padding: .9rem;
-                    background: #d9d7d7;
-               
-                }
             }
 
         }
@@ -116,15 +127,21 @@ export const CardContainer = styled.div`
             margin-top: .5rem;
 
             button {
-                    width: 6rem;
-                    height: 2rem;
+                    width: 8rem;
+                    height: 2.5rem;
 
                     background-image: linear-gradient( #f71735, #f94e65);
                     color: #fff;
+                    font-size: 1rem;
                     border: none;
 
                     border-radius: 3px;
                     cursor: pointer;
+                    animation: all .3s;
+
+                    &:hover {
+                        filter: brightness(.9);
+                    }
                 }
     
         }

@@ -9,12 +9,14 @@ import { Loading } from './Components/Loading';
 
 function App() {
   const [ infoVideo, setInfoVideo ] = useState(null)
+  const [ isSearching, setIsSearching ] = useState(false)
 
   const [download, setDownload] = useState(null)
   const [ isLoading, setIsLoading ] = useState(false)
 
   const getInfoAboutVideo = async (url) => {
     try {
+      setIsSearching(true)
       const info = await api.post('/youtube', {
         url
       })
@@ -30,9 +32,11 @@ function App() {
       }))
 
       setInfoVideo(infoFormated)
+      setIsSearching(false)
       
     } catch (error) {
       alert(error.message)
+      setIsSearching(false)
     }
   }
 
@@ -40,25 +44,26 @@ function App() {
     try {
       setIsLoading(true)
       const res = await api.get('/download', {
-        params: { url },
-        responseType: 'Blob'
+        params: { url }
       })
 
       setDownload(res.request.responseURL)
       setIsLoading(false)
 
+
+      console.log(res.request.responseURL)
       setTimeout(() => {
         setDownload(null)
       }, 4000)
     } catch (error) {
-      alert('something went wrong', error.message)
+      alert('something went wrong', error)
       setIsLoading(false)
     }
   }
 
   return (
     <Container>
-      <Header onGetInfo={getInfoAboutVideo} />
+      <Header searching={isSearching} onGetInfo={getInfoAboutVideo} />
       <Dashboard>
           { infoVideo ? <CardVideo info={infoVideo} onDown={downloadVideo}/> : <BackgroundEmpty /> }
           { isLoading && <Loading content="We are preparing your download..."/>}
